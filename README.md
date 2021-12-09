@@ -1,5 +1,5 @@
 # Computação Gráfica
-## Código ao segundo trabalho referente à primeira avaliação - Tipos de materiais:
+## Código do segundo trabalho referente à primeira avaliação - Tipos de materiais:
 
 ~~~Python
 import glfw
