@@ -426,7 +426,7 @@ while run:
 pg.quit()
 ~~~
 
-* **Código do segundo trabalho referente à segunda avaliação  - Movimentação da aranha em 3D usando o teclado*
+* **Código do segundo trabalho referente à segunda avaliação  - Movimentação da aranha em 3D usando o teclado**
 ~~~PYTHON
 
 
