@@ -169,7 +169,7 @@ while not glfw.window_should_close(window):
 # terminate glfw, free up allocated resources
 glfw.terminate()
 ~~~
-## Código do primeiro trabalho referente à segunda avaliação  - Movimentação da aranha em 2D:
+## Código do primeiro trabalho referente à segunda avaliação  - Movimentação da aranha em 2D usando o clique do mouse:
 
 ~~~PYTHON
 # Importação da biblioteca para fazer as animações
