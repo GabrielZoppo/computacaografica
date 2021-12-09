@@ -1,6 +1,6 @@
 # Computação Gráfica
 ## Primeira Avaliação: 
-* Código do primeiro trabalho - rotação de uma casa:
+* **Código do primeiro trabalho - rotação de uma casa:**
 
 ~~~PYTHON
 # Instale essas bibliotecas se estiver utilizando o colab
@@ -87,7 +87,7 @@ plt.axis('equal')
 plt.show()
 
 ~~~
-* Código do segundo trabalho  - Tipos de materiais:
+* **Código do segundo trabalho  - Tipos de materiais:**
 
 ~~~Python
 import glfw
@@ -257,7 +257,8 @@ while not glfw.window_should_close(window):
 # terminate glfw, free up allocated resources
 glfw.terminate()
 ~~~
-## Código do primeiro trabalho referente à segunda avaliação  - Movimentação da aranha em 2D usando o clique do mouse:
+## Segunda Avaliação:
+* **Código do primeiro trabalho referente à segunda avaliação  - Movimentação da aranha em 2D usando o clique do mouse:**
 
 ~~~PYTHON
 # Importação da biblioteca para fazer as animações
@@ -423,4 +424,10 @@ while run:
 
 # Finaliza o precesso pygame
 pg.quit()
+~~~
+
+* **Código do segundo trabalho referente à segunda avaliação  - Movimentação da aranha em 3D usando o teclado*
+~~~PYTHON
+
+
 ~~~
