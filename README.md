@@ -267,6 +267,7 @@ from pygame.locals import *
 import os
 from itertools import zip_longest
 
+
 # Cria a janela para colocarmos a aranha
 pg.init()
 win = pg.display.set_mode((1420, 880))
@@ -291,7 +292,7 @@ def defineCorpo(cor, posicao, tamanho):
     corpo.fill(cor)
     corpo.set_colorkey(black)
 
-# Vetor com todas as posições x e y das pernas
+# Vetor com todas as posições x e y das perna
 pos =[
     [( 25,  25), ( 49,  65), ( 25,  25)],
     [( 55,  65), ( 65,  85), ( 55,  65)],
@@ -375,7 +376,9 @@ for j in range(3):
 
     pg.image.save(win, 'p%d.png'%j)
 
-win = pg.display.set_mode((1700, 900))
+win = pg.display.set_mode((1800, 900))
+
+
 ang = 0
 j = 0
 run = True
@@ -383,11 +386,17 @@ npos_x, npos_y = 10,10
 speed = 18
 
 # Loop de eventos do pygame
-
 while run:
     pg.time.delay(100)
 
+    image = pg.image.load('p0.png').convert_alpha()
+    rect = image.get_rect()
+    rect.move_ip(npos_x, npos_y)
+    imagem = pg.transform.rotate(image, ang)
+    win.blit(imagem, rect)
+
     for event in pg.event.get():
+
         # If responsável por rotacionar a imagem da aranha
         if event.type == pg.KEYDOWN:
             win.fill((0,0,0))
@@ -395,18 +404,16 @@ while run:
                 ang = ang +45
             elif event.key == pg.K_RIGHT:
                 ang = ang -45
-                
+
             # Fecha a janela apertando o ESC    
             elif event.key == pg.K_ESCAPE:
                 run = False
-                
-            imagem = pg.transform.rotate(image, ang)
-            win.blit(imagem, rect)
 
-        # If responsável por movimentar a imagem da aranha na direção do clique do mouse
+        # If responsável por movimentar a imagem da aranha na direção do clique do mouse    
         if event.type == pg.MOUSEBUTTONDOWN:
             npos = pg.mouse.get_pos()
-
+            
+            # Vai ser feito a movimentação da aranha mais lentamente para ser mais realista
             npos_x_old, npos_y_old = npos_x, npos_y
             npos_x, npos_y = int(npos[0]-rect.size[0]/2), int(npos[1]-rect.size[1]/2)
 
@@ -420,6 +427,7 @@ while run:
             else:
                 speed_y = speed
 
+            # Faz o movimento até que tenha chegado ao lugar do mouse e tenha passado pelas posições das patas da aranha
             for x, y in zip_longest(range(npos_x_old, npos_x, speed_x), range(npos_y_old, npos_y, speed_y)):
 
                 if not x:
@@ -434,20 +442,26 @@ while run:
                 else:
                     j = 0
 
-            win.fill((0,0,0))
-            image = pg.image.load('p%d.png'%j).convert_alpha()
-            rect = image.get_rect()
-            rect.move_ip(npos[0]-rect.size[0]/2, npos[1]-rect.size[1]/2)
-            imagem = pg.transform.rotate(image, ang)
-            win.blit(imagem, rect)
-            pg.display.update()
-            pg.time.delay(100)
+                win.fill((0,0,0))
+
+                image = pg.image.load('p%d.png'%j).convert_alpha()
+                rect = image.get_rect()
+
+                npos_x, npos_y = x, y
+
+                rect.move_ip(x, y)
+                imagem = pg.transform.rotate(image, ang)
+
+                win.blit(imagem, rect)
+                pg.display.update()
+                pg.time.delay(100)
 
     # faz o refresh da janela
-    pg.display.update() 
+    pg.display.update()
 
 # Finaliza o precesso pygame
 pg.quit()
+
 
 ~~~
 
