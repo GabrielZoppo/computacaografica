@@ -1,5 +1,93 @@
 # Computação Gráfica
-## Código do segundo trabalho referente à primeira avaliação - Tipos de materiais:
+## Primeira Avaliação: 
+* Código do primeiro trabalho - rotação de uma casa:
+
+~~~PYTHON
+# Instale essas bibliotecas se estiver utilizando o colab
+!pip install dash
+!pip install flask-ngrok
+!pip install jupyter-dash
+!pip install Wand
+!apt install imagemagick
+!pip install glumpy
+!pip install numpy
+
+# importando as bibliotecas
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from flask import *
+from wand.color import Color
+from glumpy import app, gl, glm, gloo, data
+
+# Definindo os vertices da casa
+vertices0 = np.array([[ 0, 4,  4,  0,  0], #x
+                     [ 2, 2,  0,  0,  2], #y
+                     [ 0, 0,  0,  0,  0] #z=1
+])
+
+x, y, z =vertices0
+plt.plot(x, y, color = 'blue')#original em azul
+plt.axis('equal')
+plt.show()
+
+# Definindo os vertices do telhado
+
+vertices1 = np.array([[ 0, 2,  4, 0, 0], #x
+                      [ 2, 3  ,  2, 2, 2], #y
+                      [ 0, 0  ,  0, 0, 0] #z=1
+])
+
+x1, y1, z1 =vertices1
+plt.plot(x1, y1, color = 'blue')#original em azul
+plt.axis('equal')
+plt.show()
+
+# Definindo os Vertice da porta
+
+vertices2 = np.array([[ 3, 3.5  ,  3.5, 3, 3], #x
+                      [ 1  , 1  ,  0, 0, 1], #y
+                      [ 0  , 0  ,  0, 0, 0] #z=1
+])
+
+x2, y2, z2 =vertices2
+plt.plot(x2, y2, color = 'blue')#original em azul
+plt.axis('equal')
+plt.show()
+
+# Definindo os Vertices da Janela
+
+vertices3 = np.array([[ 0.5, 0.5  ,  1.5, 1.5, 0.5], #x
+                      [ 0.5  , 1.5  ,  1.5, 0.5, 0.5], #y
+                      [ 0  , 0  ,  0, 0, 0] #z=1
+])
+
+x3, y3, z3 =vertices3
+plt.plot(x3, y3, color = 'blue')#original em azul
+plt.axis('equal')
+plt.show()
+
+# Rotacionar 90° e translada o mesmo 2unidades na direção de x e 0 unidades na direção de y
+
+T = np.array([
+              [np.cos(np.pi/2), -np.sin(np.pi/2), 2],
+              [np.sin(np.pi/2), np.cos(np.pi/2), 0]
+])
+
+plt.plot(x, y, x1, y1, x2, y2, x3, y3, color = 'blue')
+plt.axis('equal')
+plt.show()
+
+new_x,new_y = np.matmul(T,vertices0)
+new_x1,new_y1 = np.matmul(T,vertices1)
+new_x2,new_y2 = np.matmul(T,vertices2)
+new_x3,new_y3 = np.matmul(T,vertices3)
+plt.plot(new_x, new_y, new_x1, new_y1, new_x2, new_y2, new_x3, new_y3, color = 'blue')
+plt.axis('equal')
+plt.show()
+
+~~~
+* Código do segundo trabalho  - Tipos de materiais:
 
 ~~~Python
 import glfw
