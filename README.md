@@ -265,6 +265,7 @@ glfw.terminate()
 import pygame as pg
 from pygame.locals import *
 import os
+from itertools import zip_longest
 
 # Cria a janela para colocarmos a aranha
 pg.init()
@@ -378,6 +379,8 @@ win = pg.display.set_mode((1700, 900))
 ang = 0
 j = 0
 run = True
+npos_x, npos_y = 10,10
+speed = 18
 
 # Loop de eventos do pygame
 
@@ -396,6 +399,7 @@ while run:
             # Fecha a janela apertando o ESC    
             elif event.key == pg.K_ESCAPE:
                 run = False
+                
             imagem = pg.transform.rotate(image, ang)
             win.blit(imagem, rect)
 
@@ -403,27 +407,48 @@ while run:
         if event.type == pg.MOUSEBUTTONDOWN:
             npos = pg.mouse.get_pos()
 
-            if j < 2:
-                j+=1
+            npos_x_old, npos_y_old = npos_x, npos_y
+            npos_x, npos_y = int(npos[0]-rect.size[0]/2), int(npos[1]-rect.size[1]/2)
+
+            if npos_x_old > npos_x:
+                speed_x = -speed
             else:
-                j = 0
+                speed_x = speed
+
+            if npos_y_old > npos_y:
+                speed_y = -speed
+            else:
+                speed_y = speed
+
+            for x, y in zip_longest(range(npos_x_old, npos_x, speed_x), range(npos_y_old, npos_y, speed_y)):
+
+                if not x:
+                    x=npos_x
+                if not y:
+                    y=npos_y
+
+                print(x,y)
+
+                if j < 2:
+                    j+=1
+                else:
+                    j = 0
 
             win.fill((0,0,0))
-
             image = pg.image.load('p%d.png'%j).convert_alpha()
-
             rect = image.get_rect()
-            
             rect.move_ip(npos[0]-rect.size[0]/2, npos[1]-rect.size[1]/2)
-
             imagem = pg.transform.rotate(image, ang)
             win.blit(imagem, rect)
+            pg.display.update()
+            pg.time.delay(100)
 
-        # faz o refresh da janela
-        pg.display.update()
+    # faz o refresh da janela
+    pg.display.update() 
 
 # Finaliza o precesso pygame
 pg.quit()
+
 ~~~
 
 * **Código do segundo trabalho referente à segunda avaliação  - Movimentação da aranha em 3D usando o teclado**
