@@ -413,7 +413,7 @@ while run:
         if event.type == pg.MOUSEBUTTONDOWN:
             npos = pg.mouse.get_pos()
             
-            # Vai ser feito a movimentação da aranha mais lentamente para ser mais realista
+            # Nesse trecho é feito o movimento da aranha em x e em y usando a comparação da posição anterior com a posição do clique
             npos_x_old, npos_y_old = npos_x, npos_y
             npos_x, npos_y = int(npos[0]-rect.size[0]/2), int(npos[1]-rect.size[1]/2)
 
@@ -427,7 +427,7 @@ while run:
             else:
                 speed_y = speed
 
-            # Faz o movimento até que tenha chegado ao lugar do mouse e tenha passado pelas posições das patas da aranha
+            # Faz o movimento pra posição mais longe intercalando entre os três movimentos da aranha
             for x, y in zip_longest(range(npos_x_old, npos_x, speed_x), range(npos_y_old, npos_y, speed_y)):
 
                 if not x:
